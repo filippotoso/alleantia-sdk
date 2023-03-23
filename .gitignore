@@ -1,0 +1,4 @@
+composer.lock
+*.bat
+tests
+vendor
