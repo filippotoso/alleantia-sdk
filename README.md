@@ -31,7 +31,9 @@ use FilippoToso\Alleantia\Options;
 require(__DIR__ . '/../vendor/autoload.php');
 
 $options = new Options([
-    'apiKey' => 'your-api-key', 
+    'base_url' => 'http://192.168.1.123:8081',
+    'username' => 'admin',
+    'password' => 'secret',
 ]);
 
 $alleantia = new Alleantia($options);
@@ -51,7 +53,9 @@ return [
     // ...
     
     'alleantia' => [
-        'api_key' => env('ALLEANTIA_API_KEY'),
+        'base_url' => env('ALLEANTIA_BASE_URL'),
+        'username' => env('ALLEANTIA_USERNAME'),
+        'password' => env('ALLEANTIA_PASSWORD'),
     ],   
 ];
 ```
@@ -59,7 +63,9 @@ return [
 In your .env file, add the following variables:
 
 ```
-ALLEANTIA=your-api-key
+ALLEANTIA_BASE_URL=http://192.168.1.123:8081
+ALLEANTIA_USERNAME=admin
+ALLEANTIA_PASSWORD=secret
 ```
 
 In your Laravel code:
