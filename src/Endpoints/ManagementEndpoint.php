@@ -3,6 +3,7 @@
 namespace FilippoToso\Alleantia\Endpoints;
 
 use FilippoToso\Api\Sdk\Support\Response;
+use Http\Message\MultipartStream\MultipartStreamBuilder;
 
 class ManagementEndpoint extends Endpoint
 {
@@ -37,12 +38,32 @@ class ManagementEndpoint extends Endpoint
      *
      * @param string $deviceId
      * @param string $destinationFolder
-     * @param string $content
+     * @param string $path
+     * @param string|null $filename
      * @return Response
      */
-    public function upload(string $deviceId, string $destinationFolder, string $content): Response
+    public function upload(string $deviceId, string $destinationFolder, string $path, ?string $filename = null): Response
     {
-        throw new \Exception('Not yet implemented');
+        $destinationFolder .= (substr($destinationFolder, -1) != '/') ? '/' : '';
+        $filename = is_null($filename) ? basename($path) : $filename;
+
+        $url = $this->url('/devices/{deviceId}/documents/upload?', $deviceId) . http_build_query([
+            'destinationFolder' => $destinationFolder,
+        ]);
+
+        $builder = new MultipartStreamBuilder($this->sdk->stream());
+        $builder->addResource(
+            'uploadFile',
+            fopen($path, 'r'),
+            [
+                'filename' => $filename,
+                'headers' => ['Content-Type' => 'multipart/form-data']
+            ]
+        );
+
+        $headers = ['Content-Type' => 'multipart/form-data; boundary="' . $builder->getBoundary() . '"'];
+
+        return $this->post($url, $headers, $builder->build());
     }
 
     /**

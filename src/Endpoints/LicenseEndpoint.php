@@ -3,6 +3,7 @@
 namespace FilippoToso\Alleantia\Endpoints;
 
 use FilippoToso\Api\Sdk\Support\Response;
+use Http\Message\MultipartStream\MultipartStreamBuilder;
 
 class LicenseEndpoint extends Endpoint
 {
@@ -20,8 +21,24 @@ class LicenseEndpoint extends Endpoint
      *
      * @return Response
      */
-    public function activate(bool $reboot = false): Response
+    public function activate(string $path, bool $reboot = false): Response
     {
-        throw new \Exception('Not yet implemented');
+        $url = '/license/activate.json' . http_build_query([
+            'reboot' => ($reboot) ? 'true' : 'false',
+        ]);
+
+        $builder = new MultipartStreamBuilder($this->sdk->stream());
+        $builder->addResource(
+            'license',
+            fopen($path, 'r'),
+            [
+                'filename' => basename($path),
+                'headers' => ['Content-Type' => 'multipart/form-data']
+            ]
+        );
+
+        $headers = ['Content-Type' => 'multipart/form-data; boundary="' . $builder->getBoundary() . '"'];
+
+        return $this->post($url, $headers, $builder->build());
     }
 }

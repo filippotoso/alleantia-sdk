@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": "^8.0 || ^9.0",
-        "filippo-toso/api-sdk": "^1.0"
+        "filippo-toso/api-sdk": "^1.0",
+        "php-http/multipart-stream-builder": "^1.2"
     },
     "autoload": {
         "psr-4": {
