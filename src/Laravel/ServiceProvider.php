@@ -22,8 +22,9 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->app->singleton(Alleantia::class, function () {
             $options = new Options([
-                'apiKey' => config('services.openai.api_key'),
-                'oprganizationId' => config('services.openai.oprganization_id'),
+                'base_url' => config('services.alleantia.base_url'),
+                'username' => config('services.alleantia.username'),
+                'password' => config('services.alleantia.password'),
             ]);
 
             return new Alleantia($options);
