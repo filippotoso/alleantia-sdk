@@ -10,10 +10,10 @@ class VariablesEndpoint extends Endpoint
      * Returns a list with the information on variables configuration of a device configured in the IoT Server.
      *
      * @param string $deviceId
-     * @param mixed|null $id
+     * @param mixed $id
      * @return Response
      */
-    public function list(string $deviceId, ?mixed $id = null): Response
+    public function list(string $deviceId, mixed $id = null): Response
     {
         $url = $this->url('/devices/{deviceId}/variables/config.json', $deviceId) . $this->repeat($id, 'id');
 
@@ -38,10 +38,10 @@ class VariablesEndpoint extends Endpoint
      * Returns a list with the information on variables configuration of the plant configured in the IoT Server.
      *
      * @param string $deviceId
-     * @param mixed|null $id
+     * @param mixed $id
      * @return Response
      */
-    public function customVariables(string $deviceId, ?mixed $id = null): Response
+    public function customVariables(string $deviceId, mixed $id = null): Response
     {
         $url = $this->url('/devices/custom/variables/config.json', $deviceId) . $this->repeat($id, 'id');
 

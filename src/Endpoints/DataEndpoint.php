@@ -10,10 +10,10 @@ class DataEndpoint extends Endpoint
      * Returns a list of actual values for the variables of a device configured in the IoT Server
      *
      * @param string $deviceId
-     * @param mixed|null $id
+     * @param mixed $id
      * @return void
      */
-    public function list(string $deviceId, ?mixed $id = null)
+    public function list(string $deviceId, mixed $id = null)
     {
         $url = $this->url('/devices/{deviceId}/variables/data.json', $deviceId) . $this->repeat($id, 'id');
 
@@ -73,10 +73,10 @@ class DataEndpoint extends Endpoint
     /**
      * Returns a list with the variables actual values for the plant configured in the IoT Server
      *
-     * @param mixed|null $id
+     * @param mixed $id
      * @return void
      */
-    public function variables(?mixed $id = null)
+    public function variables(mixed $id = null)
     {
         $url = '/devices/custom/variables/data.json' . $this->repeat($id, 'id');
 
