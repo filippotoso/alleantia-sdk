@@ -15,7 +15,7 @@ class VariablesEndpoint extends Endpoint
      */
     public function list(string $deviceId, mixed $id = null): Response
     {
-        $url = $this->url('/devices/{deviceId}/variables/config.json', $deviceId) . $this->repeat($id, 'id');
+        $url = $this->url('/devices/{deviceId}/variables/config.json', compact('deviceId')) . $this->repeat($id, 'id');
 
         return $this->get($url);
     }
@@ -29,7 +29,7 @@ class VariablesEndpoint extends Endpoint
      */
     public function variable(string $deviceId, string $variableId): Response
     {
-        $url = $this->url('/devices/{deviceId}/variables/{variableId}/config.json', $deviceId, $variableId);
+        $url = $this->url('/devices/{deviceId}/variables/{variableId}/config.json', compact('deviceId', 'variableId'));
 
         return $this->get($url);
     }
@@ -43,7 +43,7 @@ class VariablesEndpoint extends Endpoint
      */
     public function customVariables(string $deviceId, mixed $id = null): Response
     {
-        $url = $this->url('/devices/custom/variables/config.json', $deviceId) . $this->repeat($id, 'id');
+        $url = $this->url('/devices/custom/variables/config.json', compact('deviceId')) . $this->repeat($id, 'id');
 
         return $this->get($url);
     }
@@ -57,7 +57,7 @@ class VariablesEndpoint extends Endpoint
      */
     public function customVariable(string $deviceId, string $variableId): Response
     {
-        $url = $this->url('/devices/custom/variables/{variableId}/config.json', $deviceId, $variableId);
+        $url = $this->url('/devices/custom/variables/{variableId}/config.json', compact('deviceId', 'variableId'));
 
         return $this->get($url);
     }

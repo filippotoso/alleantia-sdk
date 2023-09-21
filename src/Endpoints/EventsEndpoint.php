@@ -39,7 +39,7 @@ class EventsEndpoint extends Endpoint
      */
     public function event(string $eventId): Response
     {
-        return $this->get($this->url('/events/{eventId}/info.json', $eventId));
+        return $this->get($this->url('/events/{eventId}/info.json', compact('eventId')));
     }
 
     /**
@@ -52,7 +52,7 @@ class EventsEndpoint extends Endpoint
      */
     public function eventHistory(string $eventId, int $startTime, ?int $endTime = null): Response
     {
-        $url = $this->url('/events/{eventId}/history.json?', $eventId) . http_build_query([
+        $url = $this->url('/events/{eventId}/history.json?', compact('eventId')) . http_build_query([
             'startTime' => $startTime,
             'endTime' => $endTime,
         ]);

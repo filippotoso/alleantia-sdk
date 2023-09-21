@@ -24,6 +24,8 @@ class DevicesEndpoint extends Endpoint
      */
     public function device(string $deviceId): Response
     {
-        return $this->get($this->url('/devices/{deviceId}/config.json', $deviceId));
+        $url = $this->url('/devices/{deviceId}/config.json', compact('deviceId'));
+
+        return $this->get($url);
     }
 }

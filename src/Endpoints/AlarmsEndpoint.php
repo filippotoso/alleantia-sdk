@@ -23,7 +23,7 @@ class AlarmsEndpoint extends Endpoint
      */
     public function alarm(string $alarmId): Response
     {
-        return $this->get($this->url('/alarms/{alarmId}/config.json', $alarmId));
+        return $this->get($this->url('/alarms/{alarmId}/config.json', compact('alarmId')));
     }
 
     /**

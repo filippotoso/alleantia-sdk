@@ -15,7 +15,7 @@ class DataEndpoint extends Endpoint
      */
     public function list(string $deviceId, mixed $id = null)
     {
-        $url = $this->url('/devices/{deviceId}/variables/data.json', $deviceId) . $this->repeat($id, 'id');
+        $url = $this->url('/devices/{deviceId}/variables/data.json', compact('deviceId')) . $this->repeat($id, 'id');
 
         return $this->get($url);
     }
@@ -29,7 +29,7 @@ class DataEndpoint extends Endpoint
      */
     public function read(string $deviceId, string $variableId)
     {
-        $url = $this->url('/devices/{deviceId}/variables/{variableId}/data.json', $deviceId, $variableId);
+        $url = $this->url('/devices/{deviceId}/variables/{variableId}/data.json', compact('deviceId', 'variableId'));
 
         return $this->get($url);
     }
@@ -44,7 +44,7 @@ class DataEndpoint extends Endpoint
      */
     public function write(string $deviceId, string $variableId, mixed $value)
     {
-        $url = $this->url('/devices/{deviceId}/variables/{variableId}/data.json?', $deviceId, $variableId) . http_build_query([
+        $url = $this->url('/devices/{deviceId}/variables/{variableId}/data.json?', compact('deviceId', 'variableId')) . http_build_query([
             'value' => $value,
         ]);
 
@@ -62,7 +62,7 @@ class DataEndpoint extends Endpoint
      */
     public function history(string $deviceId, string $variableId, int $startTime, ?int $endTime = null)
     {
-        $url = $this->url('/devices/{deviceId}/variables/{variableId}/logdata.json?', $deviceId, $variableId) . http_build_query([
+        $url = $this->url('/devices/{deviceId}/variables/{variableId}/logdata.json?', compact('deviceId', 'variableId')) . http_build_query([
             'startTime' => $startTime,
             'endTime' => $endTime,
         ]);
@@ -91,7 +91,7 @@ class DataEndpoint extends Endpoint
      */
     public function variable(string $variableId)
     {
-        $url = $this->url('/devices/custom/variables/{variableId}/data.json?', $variableId);
+        $url = $this->url('/devices/custom/variables/{variableId}/data.json?', compact('variableId'));
 
         return $this->get($url);
     }
@@ -106,7 +106,7 @@ class DataEndpoint extends Endpoint
      */
     public function customHistory(string $variableId, int $startTime, ?int $endTime = null)
     {
-        $url = $this->url('/devices/custom/variables/{variableId}/logdata.json?', $variableId) . http_build_query([
+        $url = $this->url('/devices/custom/variables/{variableId}/logdata.json?', compact('variableId')) . http_build_query([
             'startTime' => $startTime,
             'endTime' => $endTime,
         ]);

@@ -10,10 +10,10 @@ class Endpoint extends BaseEndpoint
      * Replace tokens in url
      *
      * @param string $format
-     * @param string $params
+     * @param array $params
      * @return string
      */
-    protected function url(string $format, ...$params): string
+    protected function url(string $format, $params): string
     {
         $url = $format;
 

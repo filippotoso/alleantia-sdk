@@ -26,7 +26,7 @@ class ManagementEndpoint extends Endpoint
      */
     public function deviceList(string $deviceId, string $path): Response
     {
-        $url = $this->url('/devices/{deviceId}/documents/list?', $deviceId) . http_build_query([
+        $url = $this->url('/devices/{deviceId}/documents/list?', compact('deviceId')) . http_build_query([
             'path' => $path,
         ]);
 
@@ -47,7 +47,7 @@ class ManagementEndpoint extends Endpoint
         $destinationFolder .= (substr($destinationFolder, -1) != '/') ? '/' : '';
         $filename = is_null($filename) ? basename($path) : $filename;
 
-        $url = $this->url('/devices/{deviceId}/documents/upload?', $deviceId) . http_build_query([
+        $url = $this->url('/devices/{deviceId}/documents/upload?', compact('deviceId')) . http_build_query([
             'destinationFolder' => $destinationFolder,
         ]);
 
@@ -75,7 +75,7 @@ class ManagementEndpoint extends Endpoint
      */
     public function downloadFile(string $deviceId, string $filePath): Response
     {
-        $url = $this->url('/devices/{deviceId}/documents/download?', $deviceId) . http_build_query([
+        $url = $this->url('/devices/{deviceId}/documents/download?', compact('deviceId')) . http_build_query([
             'filePath' => $filePath,
         ]);
 
@@ -91,7 +91,7 @@ class ManagementEndpoint extends Endpoint
      */
     public function deleteFile(string $deviceId, string $filePath): Response
     {
-        $url = $this->url('/devices/{deviceId}/documents/delete?', $deviceId) . http_build_query([
+        $url = $this->url('/devices/{deviceId}/documents/delete?', compact('deviceId')) . http_build_query([
             'filePath' => $filePath,
         ]);
 
@@ -108,7 +108,7 @@ class ManagementEndpoint extends Endpoint
      */
     public function createSubfolder(string $deviceId, string $folderPath, string $subfolderName): Response
     {
-        $url = $this->url('/devices/{deviceId}/documents/createSubfolder?', $deviceId) . http_build_query([
+        $url = $this->url('/devices/{deviceId}/documents/createSubfolder?', compact('deviceId')) . http_build_query([
             'folderPath' => $folderPath,
             'subfolderName' => $subfolderName,
         ]);
@@ -126,7 +126,7 @@ class ManagementEndpoint extends Endpoint
      */
     public function deleteSubfolder(string $deviceId, string $folderPath): Response
     {
-        $url = $this->url('/devices/{deviceId}/documents/deleteSubfolder?', $deviceId) . http_build_query([
+        $url = $this->url('/devices/{deviceId}/documents/deleteSubfolder?', compact('deviceId')) . http_build_query([
             'folderPath' => $folderPath,
         ]);
 
