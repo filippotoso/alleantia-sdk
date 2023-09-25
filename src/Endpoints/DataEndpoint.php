@@ -11,7 +11,7 @@ class DataEndpoint extends Endpoint
      *
      * @param string $deviceId
      * @param mixed $id
-     * @return void
+     * @return Response
      */
     public function list(string $deviceId, mixed $id = null)
     {
@@ -25,7 +25,7 @@ class DataEndpoint extends Endpoint
      *
      * @param string $deviceId
      * @param string $variableId
-     * @return void
+     * @return Response
      */
     public function read(string $deviceId, string $variableId)
     {
@@ -40,7 +40,7 @@ class DataEndpoint extends Endpoint
      * @param string $deviceId
      * @param string $variableId
      * @param mixed $value
-     * @return void
+     * @return Response
      */
     public function write(string $deviceId, string $variableId, mixed $value)
     {
@@ -74,7 +74,8 @@ class DataEndpoint extends Endpoint
      * Returns a list with the variables actual values for the plant configured in the IoT Server
      *
      * @param mixed $id
-     * @return void
+     * @return Response
+
      */
     public function variables(mixed $id = null)
     {
@@ -87,7 +88,8 @@ class DataEndpoint extends Endpoint
      * Returns the actual variable value for the plant configured in the IoT Server
      *
      * @param string $variableId
-     * @return void
+     * @return Response
+
      */
     public function variable(string $variableId)
     {
